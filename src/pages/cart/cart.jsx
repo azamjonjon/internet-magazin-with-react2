@@ -3,12 +3,12 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import reducer, {
   API,
+  decrement,
   deleteAll,
   deleteProduct,
   getCart,
   increament,
   Price,
-  Reducer,
 } from "../../reducers/counterSlice";
 import img1 from "../images/icon-cancel.png";
 import { Link } from "react-router";
@@ -57,7 +57,7 @@ const Cart = () => {
                         +
                       </button>
                       <p>{elem.quantity}</p>
-                      <button onClick={() => dispach(Reducer(elem.id))}>
+                      <button onClick={() => dispach(decrement(elem.id))}>
                         -
                       </button>
                     </div>

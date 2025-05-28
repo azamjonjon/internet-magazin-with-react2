@@ -124,8 +124,8 @@ export const increament = createAsyncThunk(
     }
   }
 );
-export const Reducer = createAsyncThunk(
-  "counter/reducer",
+export const decrement = createAsyncThunk(
+  "counter/decrement",
   async (id, { dispatch }) => {
     try {
       await axios.put(
