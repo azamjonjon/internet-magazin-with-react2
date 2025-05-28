@@ -40,9 +40,8 @@ const ProductById = () => {
   }
   return (
     <div>
-      <div className="md:flex justify-center items-center gap-[80px]">
-        <div className="w-[80%] m-auto md:w-[40%]">
-          {/* Основной слайдер */}
+      <div className="md:flex justify-center items-center gap-[20px]">
+        <div className="w-[80%] m-auto md:m-0 md:w-[40%]">
           <Swiper
             style={{
               "--swiper-navigation-color": "#fff",
