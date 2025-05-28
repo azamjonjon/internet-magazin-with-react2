@@ -9,7 +9,7 @@ import reducer, {
   getCart,
   increament,
   Price,
-} from "../../reducers/counterSlice";
+} from "../../reducers/project";
 import img1 from "../images/icon-cancel.png";
 import { Link } from "react-router";
 const Cart = () => {

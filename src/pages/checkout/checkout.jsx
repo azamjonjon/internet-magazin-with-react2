@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API, deleteAll } from "../../reducers/counterSlice";
+import { API, deleteAll } from "../../reducers/project";
 import img1 from "../images/Frame 834.png";
 import { Link } from "react-router";
 const Checkout = () => {
   const getcart = useSelector((state) => state.counter.data);
   const cartPrice = useSelector((state) => state.counter.price);
-    let dispach = useDispatch();
+  let dispach = useDispatch();
 
   return (
     <div>
@@ -120,8 +120,17 @@ const Checkout = () => {
               </button>
             </div>
             <Link to="/">
-              <button onClick={()=>dispach(deleteAll(),alert("Ваш заказ уже отправлен по вашему адрессу"))} className="w-[150px] h-[40px] border-0 bg-[#DB4444] text-white rounded-[5px] mt-[20px]">Place Order</button>
-              
+              <button
+                onClick={() =>
+                  dispach(
+                    deleteAll(),
+                    alert("Ваш заказ уже отправлен по вашему адрессу")
+                  )
+                }
+                className="w-[150px] h-[40px] border-0 bg-[#DB4444] text-white rounded-[5px] mt-[20px]"
+              >
+                Place Order
+              </button>
             </Link>
           </div>
         </div>

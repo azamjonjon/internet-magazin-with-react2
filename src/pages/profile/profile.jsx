@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import {
-  EditProfile,
-  getById,
-  getForProfile,
-} from "../../reducers/counterSlice";
+import { EditProfile, getById, getForProfile } from "../../reducers/project";
 
 const Profile = () => {
   const user = useSelector((state) => state.counter.userProfile);
   console.log(user);
-  
+
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setemail] = useState("");

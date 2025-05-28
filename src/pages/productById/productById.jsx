@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API, get, getById } from "../../reducers/counterSlice";
+import { API, get, getById } from "../../reducers/project";
 import { useNavigate, useParams } from "react-router";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
@@ -90,7 +90,9 @@ const ProductById = () => {
           <p className="text-[40px]">{product.productName}</p>
           <img src={img15} alt="" />
           <h1 className="text-[30px]">${product.price}</h1>
-          <p className="border-b-2 border-black p-[20px]">{product.description}</p>
+          <p className="border-b-2 border-black p-[20px]">
+            {product.description}
+          </p>
           <div className="mt-[20px] flex gap-[20px] items-center">
             <p className="text-[20px]">Colors:</p>
             <div className="w-[50px] h-[50px] rounded-4xl bg-[#A0BCE0] border-2 border-gray-700"></div>
@@ -98,17 +100,33 @@ const ProductById = () => {
           </div>
           <div className="mt-[20px] flex gap-[20px] items-center">
             <p className="text-[20px]">Size:</p>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">XS</div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">S</div>
-            <div className="w-[40px] h-[40px] rounded-[5px] bg-[#DB4444] p-[8px]  text-center text-white">M</div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">L</div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">XL</div>
+            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
+              XS
+            </div>
+            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
+              S
+            </div>
+            <div className="w-[40px] h-[40px] rounded-[5px] bg-[#DB4444] p-[8px]  text-center text-white">
+              M
+            </div>
+            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
+              L
+            </div>
+            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
+              XL
+            </div>
           </div>
           <div className="flex gap-[20px] mt-[30px]">
-            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl ">-</button>
+            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl ">
+              -
+            </button>
             <p className="text-[30px]">{product.quantity}</p>
-            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl bg-[#DB4444] text-white">+</button>
-            <button className="w-[150px] h-[50px] border-0 bg-[#DB4444] text-white rounded-2xl">Buy now</button>
+            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl bg-[#DB4444] text-white">
+              +
+            </button>
+            <button className="w-[150px] h-[50px] border-0 bg-[#DB4444] text-white rounded-2xl">
+              Buy now
+            </button>
           </div>
         </div>
       </div>

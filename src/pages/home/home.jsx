@@ -16,7 +16,7 @@ import {
   API,
   get,
   getById,
-} from "../../reducers/counterSlice";
+} from "../../reducers/project";
 import img1 from "../images/Frame 560.png";
 import img2 from "../images/images (1).jpg";
 import img3 from "../images/images.jpg";
@@ -158,8 +158,8 @@ const Home = () => {
           <Link to="/product">
             <div className="w-[20%] m-auto mb-[50px]">
               <button className="w-[200px] m-auto mb-[50px] h-[50px] rounded-xl bg-[#DB4444] text-white">
-              View All
-            </button>
+                View All
+              </button>
             </div>
           </Link>
         </Swiper>

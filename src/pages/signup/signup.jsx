@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
-import { API } from "../../reducers/counterSlice";
+import { API } from "../../reducers/project";
 const SignUp = () => {
   let dispach = useDispatch();
   const [userName, setUserName] = useState("");
@@ -75,7 +75,9 @@ const SignUp = () => {
         <br />
         <br />
         <button
-          onClick={() => dispach(register(),alert("вы успешно создали аккаунт"))}
+          onClick={() =>
+            dispach(register(), alert("вы успешно создали аккаунт"))
+          }
           className="w-[90%] h-[40px] bg-amber-600 text-white rounded-2xl"
         >
           Create Account

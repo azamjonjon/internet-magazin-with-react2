@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { API } from "../../reducers/counterSlice";
+import { API } from "../../reducers/project";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -44,10 +44,15 @@ const Login = () => {
           />
           <br />
           <br />
-          <button className="w-[90%] m-auto bg-amber-600 border-0 h-[40px] rounded-2xl" onClick={() => login(alert("Добро пожаловать"))}>Log in</button>
+          <button
+            className="w-[90%] m-auto bg-amber-600 border-0 h-[40px] rounded-2xl"
+            onClick={() => login(alert("Добро пожаловать"))}
+          >
+            Log in
+          </button>
         </div>
       </div>
-    </div> 
+    </div>
   );
 };
 

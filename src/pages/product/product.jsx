@@ -23,7 +23,7 @@ import {
   filterData,
   get,
   getById,
-} from "../../reducers/counterSlice";
+} from "../../reducers/project";
 import FilterProduct from "../../components/filterProduct.jsx/filterProduct";
 const Product = () => {
   const data = useSelector((state) => state.counter.users);

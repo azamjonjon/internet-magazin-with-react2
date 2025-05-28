@@ -6,9 +6,9 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategory } from "../../reducers/counterSlice";
-import { getBrand } from "../../reducers/counterSlice";
-import { get } from "../../reducers/counterSlice";
+import { getCategory } from "../../reducers/project";
+import { getBrand } from "../../reducers/project";
+import { get } from "../../reducers/project";
 
 const FilterProduct = () => {
   const brand = useSelector((state) => state.counter.barnd);

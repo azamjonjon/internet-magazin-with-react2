@@ -7,7 +7,7 @@ import {
   get,
   getById,
   getFromWishlist,
-} from "../../reducers/counterSlice";
+} from "../../reducers/project";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
@@ -55,45 +55,46 @@ const Wishlist = () => {
           }}
         >
           <div className="mt-[-600px] flex flex-wrap justify-around">
-            {wishData.length>0 && wishData.map((elem) => {
-              return (
-                <SwiperSlide className="card" key={elem.id}>
-                  <div key={elem.id} className="w-[300px] h-[300px] ">
-                    <div className="bg-[#F5F5F5] p-[20px]">
-                      <div className="flex gap-[20px]">
-                        <div className="w-[200px] h-[200px] ">
-                          <img
-                            className="w-[200px] h-[200px]"
-                            src={`${API}/images/${elem.image}`}
-                            alt=""
-                          />
+            {wishData.length > 0 &&
+              wishData.map((elem) => {
+                return (
+                  <SwiperSlide className="card" key={elem.id}>
+                    <div key={elem.id} className="w-[300px] h-[300px] ">
+                      <div className="bg-[#F5F5F5] p-[20px]">
+                        <div className="flex gap-[20px]">
+                          <div className="w-[200px] h-[200px] ">
+                            <img
+                              className="w-[200px] h-[200px]"
+                              src={`${API}/images/${elem.image}`}
+                              alt=""
+                            />
+                          </div>
+                          <div className="w-[40px] h-[40px] mt-[-10px]">
+                            <img
+                              onClick={() => dispach(delFromWishlist(elem.id))}
+                              src={img7}
+                              alt=""
+                            />
+                          </div>
                         </div>
-                        <div className="w-[40px] h-[40px] mt-[-10px]">
-                          <img
-                            onClick={() => dispach(delFromWishlist(elem.id))}
-                            src={img7}
-                            alt=""
-                          />
+                      </div>
+                      <button
+                        onClick={() => dispach(addToCart(elem.id))}
+                        className="addtocart"
+                      >
+                        Add To Cart
+                      </button>
+                      <div key={elem.id} className="">
+                        <h1>{elem.productName}</h1>
+                        <div className="flex justify-between items-center">
+                          <p>{elem.price}</p>
+                          <img src={img14} alt="" />
                         </div>
                       </div>
                     </div>
-                    <button
-                      onClick={() => dispach(addToCart(elem.id))}
-                      className="addtocart"
-                    >
-                      Add To Cart
-                    </button>
-                    <div key={elem.id} className="">
-                      <h1>{elem.productName}</h1>
-                      <div className="flex justify-between items-center">
-                        <p>{elem.price}</p>
-                        <img src={img14} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+                  </SwiperSlide>
+                );
+              })}
           </div>
         </Swiper>
       </div>
