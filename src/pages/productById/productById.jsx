@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API, get, getById } from "../../reducers/project";
+import { addToCart, addToWishlist, API, decrement, get, getById, increament } from "../../reducers/project";
 import { useNavigate, useParams } from "react-router";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
@@ -116,14 +116,14 @@ const ProductById = () => {
             </div>
           </div>
           <div className="flex gap-[20px] mt-[30px]">
-            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl ">
+            <button onClick={()=>decrement()} className="text-[30px] w-[50px] h-[50px] rounded-2xl ">
               -
             </button>
             <p className="text-[30px]">{product.quantity}</p>
-            <button className="text-[30px] w-[50px] h-[50px] rounded-2xl bg-[#DB4444] text-white">
+            <button onClick={()=>increament()} className="text-[30px] w-[50px] h-[50px] rounded-2xl bg-[#DB4444] text-white">
               +
             </button>
-            <button className="w-[150px] h-[50px] border-0 bg-[#DB4444] text-white rounded-2xl">
+            <button onClick={()=>addToCart()} className="w-[150px] h-[50px] border-0 bg-[#DB4444] text-white rounded-2xl">
               Buy now
             </button>
           </div>

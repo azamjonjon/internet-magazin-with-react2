@@ -40,7 +40,9 @@ const Wishlist = () => {
     <div>
       <div className="">
         <div className="flex m-auto w-[90%] justify-between items-center">
-          <p className="text-[30px]">Wishlist ({wishData.length})</p>
+      <p className="text-[30px]">
+  Wishlist ({wishData?.length ?? 0})
+</p>
           <button className="w-[150px] h-[40px] border-2">
             Move All To Bag
           </button>
@@ -55,7 +57,7 @@ const Wishlist = () => {
           }}
         >
           <div className="mt-[-600px] flex flex-wrap justify-around">
-            {wishData.length > 0 &&
+            {wishData?.length &&
               wishData.map((elem) => {
                 return (
                   <SwiperSlide className="card" key={elem.id}>

@@ -266,7 +266,7 @@ const Home = () => {
               <div className="card" key={el.id}>
                 <div className="h-[400px]">
                   <div key={el.id}>
-                    <div className="bg-[#F5F5F5] w-[280px] h-[240px] p-[20px] ">
+                    <div className="bg-[#F5F5F5] w-[250px] h-[240px] p-[20px] ">
                       <div className="flex">
                         <img
                           className="w-[200px] h-[200px]"

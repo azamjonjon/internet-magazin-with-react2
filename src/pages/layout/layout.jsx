@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation } from "react-router";
 import img1 from "../images/Group 1116606595.png";
 import img2 from "../images/Cart1.png";
 import img3 from "../images/user (1).png";
@@ -12,7 +12,7 @@ import "../../app/styles/global.css";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import React from "react";
+import React, { useEffect, useState } from "react";
 const Layout = () => {
   const getcart = useSelector((state) => state.counter.data);
   let wishlist = JSON.parse(localStorage.getItem("wishlist"));
@@ -43,6 +43,12 @@ const Layout = () => {
     localStorage.removeItem("token");
     alert("вы вышли из аккаунта");
   }
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, [location]);
   return (
     <div>
       <header className="flex justify-around items-center m-[20px]">
@@ -100,22 +106,32 @@ const Layout = () => {
             placeholder="What are you looking for?"
             className="hidden bg-gray-300 border-gray-500 h-[40px] w-[250px] p-[20px] md:block"
           />
-          <Link to={localStorage.getItem("token") ? "/wishlist" : "/signup"}>
-            <div className="flex text-center">
-              <img src={img4} alt="" />
-              <p className="ml-[-10px] mt-[-10px] w-[20px] h-[20px] rounded-2xl bg-amber-600 text-white">
-                {wishlist.length}
-              </p>
-            </div>
-          </Link>
-          <Link to={localStorage.getItem("token") ? "/cart" : "/signup"}>
-            <div className="flex text-center">
-              <img src={img2} alt="" />
-              <p className="ml-[-10px] mt-[-10px] w-[20px] h-[20px] rounded-2xl bg-amber-600 text-white">
-                {getcart.length}
-              </p>
-            </div>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link to="/wishlist">
+                <div className="flex text-center">
+                  <img src={img4} alt="" />
+                  <p className="ml-[-10px] mt-[-10px] w-[20px] h-[20px] rounded-2xl bg-amber-600 text-white">
+                    {wishlist?.length ?? 0}
+                  </p>
+                </div>
+              </Link>
+
+              <Link to="/cart">
+                <div className="flex text-center">
+                  <img src={img2} alt="" />
+                  <p className="ml-[-10px] mt-[-10px] w-[20px] h-[20px] rounded-2xl bg-amber-600 text-white">
+                    {getcart?.length ?? 0}
+                  </p>
+                </div>
+              </Link>
+            </>
+          ) : (
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+          )}
+
           <div className="">
             <img
               aria-describedby={id}

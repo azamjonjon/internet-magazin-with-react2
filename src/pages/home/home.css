@@ -32,6 +32,10 @@
   width: 80%;
   height: 600px;
 }
+.card{
+  width: 20%;
+  text-align: start;
+}
 
 @media (max-width:768px){
   .jera{
