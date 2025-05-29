@@ -35,7 +35,7 @@ import img15 from "../images/Frame 739.png";
 import "./home.css";
 import { Link, useNavigate, useParams } from "react-router";
 const Home = () => {
-    const data = useSelector((state) => state.counter.users);
+  const data = useSelector((state) => state.counter.users);
   console.log(data);
   let navigation = useNavigate();
   let dispach = useDispatch();
@@ -46,10 +46,10 @@ const Home = () => {
     dispach(getById({ id, navigation }));
   }
 
-    useEffect(() => {
-      dispach(get());
-      dispach(addToCart());
-    }, []);
+  useEffect(() => {
+    dispach(get());
+    dispach(addToCart());
+  }, []);
 
   return (
     <div>
@@ -118,9 +118,15 @@ const Home = () => {
                         alt=""
                       />
                       <div className="absolute top-4 right-4 space-y-2">
-                        <button onClick={() => info(elem.id)}>
-                          <img className="w-6 h-6" src={img6} alt="View" />
-                        </button>
+                        <Link to={`/productById/${elem.id}`}>
+                          <button onClick={() => dispach(addToWishlist(elem))}>
+                            <img
+                              className="w-6 h-6"
+                              src={img6}
+                              alt="Wishlist"
+                            />
+                          </button>
+                        </Link>
                         <button onClick={() => dispach(addToWishlist(elem))}>
                           <img className="w-6 h-6" src={img5} alt="Wishlist" />
                         </button>

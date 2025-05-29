@@ -31,7 +31,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="aboutProduct/:id" element={<ProductById />} />
+          <Route path="productById/:id" element={<ProductById />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="product" element={<Product />} />
