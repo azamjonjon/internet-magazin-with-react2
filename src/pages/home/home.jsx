@@ -35,7 +35,7 @@ import img15 from "../images/Frame 739.png";
 import "./home.css";
 import { Link, useNavigate, useParams } from "react-router";
 const Home = () => {
-  const data = useSelector((state) => state.counter.users);
+    const data = useSelector((state) => state.counter.users);
   console.log(data);
   let navigation = useNavigate();
   let dispach = useDispatch();
@@ -46,9 +46,10 @@ const Home = () => {
     dispach(getById({ id, navigation }));
   }
 
-  useEffect(() => {
-    dispach(get());
-  }, []);
+    useEffect(() => {
+      dispach(get());
+      dispach(addToCart());
+    }, []);
 
   return (
     <div>

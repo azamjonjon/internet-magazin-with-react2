@@ -152,7 +152,7 @@ export const getById = createAsyncThunk(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      navigate(`/aboutProduct/${id}`);
+      navigate(`/productById/${id}`);
       return data.data;
     } catch (error) {
       console.error(error);
