@@ -3,7 +3,7 @@
   height: 30px;
   background-color: black;
   color: white;
-  display: none;
+  d7splay: none;
 }
 .card:hover .addtocart {
   display: block;
@@ -22,4 +22,5 @@
     width: 30%;
     margin: auto;
     display: flex;
+    gap: 50px;
 }

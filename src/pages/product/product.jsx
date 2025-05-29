@@ -67,40 +67,38 @@ const Product = () => {
           {data.map((elem) => {
             return (
               <div className="card">
-                <div key={elem.id} className="w-[300px] h-[350px] ">
-                  <div className="bg-[#F5F5F5] p-[20px]">
-                    <div className="flex gap-[20px]">
-                      <div className="w-[200px] h-[200px] ">
-                        <img
-                          className="w-[200px] h-[200px]"
-                          src={`${API}/images/${elem.image}`}
-                          alt=""
-                        />
-                      </div>
-                      <div className="w-[40px] h-[40px] mt-[-20px]">
-                        <div onClick={() => info(elem.id)}>
-                          <img src={img6} alt="" />
-                        </div>
-                        <img
-                          onClick={() => dispach(addToWishlist(elem))}
-                          src={img5}
-                          alt=""
-                        />
-                      </div>
+                <div className="bg-white border rounded-xl shadow-md overflow-hidden transition-transform w-[80%] h-[350px] m-[10px] hover:scale-105 duration-300">
+                  <div className="bg-[#F5F5F5] p-4 relative">
+                    <img
+                      className="w-full h-[200px] object-contain"
+                      src={`${API}/images/${elem.image}`}
+                      alt=""
+                    />
+                    <div className="absolute top-4 right-4 space-y-2">
+                      <button onClick={() => info(elem.id)}>
+                        <img className="w-6 h-6" src={img6} alt="View" />
+                      </button>
+                      <button onClick={() => dispach(addToWishlist(elem))}>
+                        <img className="w-6 h-6" src={img5} alt="Wishlist" />
+                      </button>
                     </div>
                   </div>
-                  <button
-                    onClick={() => dispach(addToCart(elem.id))}
-                    className="addtocart"
-                  >
-                    Add To Cart
-                  </button>
-                  <div key={elem.id} className="">
-                    <h1>{elem.productName}</h1>
-                    <div className="flex justify-between items-center">
-                      <p>{elem.price}</p>
-                      <img src={img14} alt="" />
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">
+                      {elem.productName}
+                    </h2>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-[#DB4444] font-bold text-md">
+                        ${elem.price}
+                      </p>
+                      <img className="w-32 h-6" src={img14} alt="Rating" />
                     </div>
+                    <button
+                      onClick={() => dispach(addToCart(elem.id))}
+                      className="addtocart"
+                    >
+                      Add To Cart
+                    </button>
                   </div>
                 </div>
               </div>

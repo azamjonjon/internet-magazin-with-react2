@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToWishlist, API, decrement, get, getById, increament } from "../../reducers/project";
+import {
+  addToCart,
+  addToWishlist,
+  API,
+  decrement,
+  get,
+  getById,
+  increament,
+} from "../../reducers/project";
 import { useNavigate, useParams } from "react-router";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -16,50 +23,44 @@ import img6 from "../images/Fill Eye.png";
 import img14 from "../images/Frame 566.png";
 import img15 from "../images/Frame 920.png";
 import "./productById.css";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 const ProductById = () => {
   const data = useSelector((state) => state.counter.users);
-
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const product = useSelector((state) => state.counter.productById);
-  let dispach = useDispatch();
-  const navigation = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   useEffect(() => {
-    dispach(getById({ id, navigation }));
-    dispach(get());
-  }, []);
-  console.log(product.images);
-  function info(id) {
-    dispach(getById({ id, navigation }));
-  }
+    dispatch(getById({ id, navigate }));
+    dispatch(get());
+  }, [dispatch, id, navigate]);
+
+  const handleView = (id) => {
+    dispatch(getById({ id, navigate }));
+  };
+
   return (
-    <div>
-      <div className="md:flex justify-center items-center gap-[20px]">
-        <div className="w-[80%] m-auto md:m-0 md:w-[40%]">
+    <div className="p-6">
+      <div className="md:flex justify-center items-start gap-10">
+        <div className="w-full md:w-1/2">
           <Swiper
-            style={{
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
-            }}
-            loop={true}
+            loop
             spaceBetween={10}
-            navigation={true}
+            navigate
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mb-4 rounded-xl overflow-hidden"
+            className="rounded-xl overflow-hidden mb-4"
           >
-            {product.images?.map((elem) => (
-              <SwiperSlide key={elem.id}>
+            {product.images?.map((img) => (
+              <SwiperSlide key={img.id}>
                 <img
-                  src={`${API}/images/${elem.images}`}
-                  className="w-full h-[500px] object-cover"
-                  alt=""
+                  src={`${API}/images/${img.images}`}
+                  className="w-full h-[500px] object-cover rounded-xl"
+                  alt="product"
                 />
               </SwiperSlide>
             ))}
@@ -67,119 +68,114 @@ const ProductById = () => {
 
           <Swiper
             onSwiper={setThumbsSwiper}
-            loop={true}
-            spaceBetween={-10}
+            loop
+            spaceBetween={10}
             slidesPerView={5}
-            freeMode={true}
-            watchSlidesProgress={true}
+            freeMode
+            watchSlidesProgress
             className="rounded-md overflow-hidden"
           >
-            {product.images?.map((elem) => (
-              <SwiperSlide key={elem.id}>
+            {product.images?.map((img) => (
+              <SwiperSlide key={img.id}>
                 <img
-                  src={`${API}/images/${elem.images}`}
-                  className="h-[80px] w-full object-cover cursor-pointer"
-                  alt=""
+                  src={`${API}/images/${img.images}`}
+                  className="h-[80px] object-cover cursor-pointer rounded"
+                  alt="thumb"
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-        <div className="">
-          <p className="text-[40px]">{product.productName}</p>
-          <img src={img15} alt="" />
-          <h1 className="text-[30px]">${product.price}</h1>
-          <p className="border-b-2 border-black p-[20px]">
+
+        <div className="w-full md:w-1/2 space-y-6">
+          <h1 className="text-3xl font-semibold">{product.productName}</h1>
+          <img src={img15} alt="rating" />
+          <h2 className="text-2xl text-red-600 font-bold">${product.price}</h2>
+          <p className="border-b-2 border-gray-300 pb-4 text-gray-700">
             {product.description}
           </p>
-          <div className="mt-[20px] flex gap-[20px] items-center">
-            <p className="text-[20px]">Colors:</p>
-            <div className="w-[50px] h-[50px] rounded-4xl bg-[#A0BCE0] border-2 border-gray-700"></div>
-            <div className="w-[50px] h-[50px] rounded-4xl bg-[#E07575] border-2 border-gray-700"></div>
+
+          <div className="flex gap-4 items-center">
+            <p className="text-lg font-medium">Colors:</p>
+            <div className="w-8 h-8 rounded-full bg-[#A0BCE0] border"></div>
+            <div className="w-8 h-8 rounded-full bg-[#E07575] border"></div>
           </div>
-          <div className="mt-[20px] flex gap-[20px] items-center">
-            <p className="text-[20px]">Size:</p>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
-              XS
-            </div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
-              S
-            </div>
-            <div className="w-[40px] h-[40px] rounded-[5px] bg-[#DB4444] p-[8px]  text-center text-white">
-              M
-            </div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
-              L
-            </div>
-            <div className="w-[40px] h-[40px] rounded-[5px] p-[8px] border-2 border-gray-700 text-center">
-              XL
-            </div>
+
+          <div className="flex gap-4 items-center">
+            <p className="text-lg font-medium">Size:</p>
+            {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
+              <div
+                key={size}
+                className={`w-10 h-10 flex items-center justify-center border rounded-md font-medium ${
+                  size === 'M' ? 'bg-red-600 text-white' : ''
+                }`}
+              >
+                {size}
+              </div>
+            ))}
           </div>
-          <div className="flex gap-[20px] mt-[30px]">
-            <button onClick={()=>decrement()} className="text-[30px] w-[50px] h-[50px] rounded-2xl ">
+
+          <div className="flex items-center gap-4 mt-6">
+            <button
+              onClick={() => dispatch(decrement())}
+              className="w-10 h-10 border text-2xl rounded-lg hover:bg-gray-200"
+            >
               -
             </button>
-            <p className="text-[30px]">{product.quantity}</p>
-            <button onClick={()=>increament()} className="text-[30px] w-[50px] h-[50px] rounded-2xl bg-[#DB4444] text-white">
+            <span className="text-xl font-semibold">{product.quantity}</span>
+            <button
+              onClick={() => dispatch(increament())}
+              className="w-10 h-10 bg-red-600 text-white text-2xl rounded-lg hover:bg-red-700"
+            >
               +
             </button>
-            <button onClick={()=>addToCart()} className="w-[150px] h-[50px] border-0 bg-[#DB4444] text-white rounded-2xl">
-              Buy now
+            <button
+              onClick={() => dispatch(addToCart())}
+              className="ml-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            >
+              Buy Now
             </button>
           </div>
         </div>
       </div>
-      <div className="w-[90%] m-auto mt-[100px]">
-        <Swiper
-          spaceBetween={-1000}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-        >
-          <div className="mt-[-600px] flex flex-wrap justify-around">
-            {data.map((elem) => {
-              return (
-                <SwiperSlide className="card" key={elem.id}>
-                  <div key={elem.id} className="w-[300px] h-[300px] ">
-                    <div className="bg-[#F5F5F5] p-[20px]">
-                      <div className="flex gap-[20px]">
-                        <div className="w-[200px] h-[200px] ">
-                          <img
-                            className="w-[200px] h-[200px]"
-                            src={`${API}/images/${elem.image}`}
-                            alt=""
-                          />
-                        </div>
-                        <div className="w-[40px] h-[40px] mt-[-20px]">
-                          <div onClick={() => info(elem.id)}>
-                            <img src={img6} alt="" />
-                          </div>
-                          <img
-                            onClick={() => dispach(addToWishlist(elem))}
-                            src={img5}
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => dispach(addToCart(elem.id))}
-                      className="addtocart"
-                    >
-                      Add To Cart
-                    </button>
-                    <div key={elem.id} className="">
-                      <h1>{elem.productName}</h1>
-                      <div className="flex justify-between items-center">
-                        <p>{elem.price}</p>
-                        <img src={img14} alt="" />
-                      </div>
+
+      <div className="w-full mt-20">
+        <Swiper spaceBetween={10} freeMode>
+          <div className="flex flex-wrap gap-6 justify-center">
+            {data.map((elem) => (
+              <SwiperSlide key={elem.id} className="max-w-xs">
+                <div className="bg-gray-100 rounded-xl p-4 shadow hover:shadow-md transition">
+                  <div className="relative">
+                    <img
+                      className="w-full h-48 object-cover rounded"
+                      src={`${API}/images/${elem.image}`}
+                      alt={elem.productName}
+                    />
+                    <div className="absolute top-2 right-2 flex flex-col gap-2">
+                      <button onClick={() => handleView(elem.id)}>
+                        <img src={img6} alt="view" />
+                      </button>
+                      <button onClick={() => dispatch(addToWishlist(elem))}>
+                        <img src={img5} alt="wishlist" />
+                      </button>
                     </div>
                   </div>
-                </SwiperSlide>
-              );
-            })}
+                  <button
+                    onClick={() => dispatch(addToCart(elem.id))}
+                    className="w-full mt-4 bg-red-600 text-white py-2 rounded hover:bg-red-700"
+                  >
+                    Add to Cart
+                  </button>
+                  <div className="mt-2 text-center">
+                    <h3 className="text-lg font-semibold">{elem.productName}</h3>
+                    <div className="flex justify-between items-center mt-1">
+                      <span className="text-gray-800">${elem.price}</span>
+                      <img src={img14} alt="rating" />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
           </div>
         </Swiper>
       </div>

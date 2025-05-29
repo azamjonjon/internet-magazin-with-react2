@@ -53,23 +53,17 @@ const Home = () => {
   return (
     <div>
       <div className="md:flex justify-around p-[20px]">
-        <div className="">
-          <p className="text-[20px]">Woman’s Fashion</p>
-          <br />
-          <p className="text-[20px]">Men’s Fashion</p>
-          <br />
-          <p className="text-[20px]">Electronics</p>
-          <br />
-          <p className="text-[20px]">Home & Lifestyle</p>
-          <br />
-          <p className="text-[20px]">Medicine</p>
-          <br />
-          <p className="text-[20px]">Sports & Outdoor</p>
-          <br />
-          <p className="text-[20px]">Baby’s & Toys</p>
-          <br />
-          <p className="text-[20px]">Groceries & Pets</p>
+        <div className="space-y-4 text-[20px] font-medium text-gray-800">
+          <p>Woman’s Fashion</p>
+          <p>Men’s Fashion</p>
+          <p>Electronics</p>
+          <p>Home & Lifestyle</p>
+          <p>Medicine</p>
+          <p>Sports & Outdoor</p>
+          <p>Baby’s & Toys</p>
+          <p>Groceries & Pets</p>
         </div>
+
         <div className="jera">
           <Swiper
             spaceBetween={30}
@@ -80,24 +74,24 @@ const Home = () => {
             }}
           >
             <SwiperSlide>
-              <div className="w-[90%] h-[400px]">
-                <img className="w-[] rounded-4xl" src={img1} alt="" />
+              <div className="w-full max-w-[90%] h-[400px] overflow-hidden rounded-3xl shadow-lg">
+                <img className="w-full h-full object-cover" src={img1} alt="" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {" "}
-              <div className="w-[90%] h-[400px]">
-                <img className=" rounded-4xl " src={img2} alt="" />
+              <div className="w-full max-w-[90%] h-[400px] overflow-hidden rounded-3xl shadow-lg">
+                <img className="w-full h-full object-cover" src={img2} alt="" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-[90%] h-[400px]">
-                <img className="" src={img3} alt="" />
+              <div className="w-full max-w-[90%] h-[400px] overflow-hidden rounded-3xl shadow-lg">
+                <img className="w-full h-full object-cover" src={img3} alt="" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-[90%] h-[400px]">
-                <img className="rounded-4xl " src={img4} alt="" />
+              <div className="w-full max-w-[90%] h-[400px] overflow-hidden rounded-3xl shadow-lg">
+                <img className="w-full h-full object-cover" src={img4} alt="" />
               </div>
             </SwiperSlide>
           </Swiper>
@@ -111,44 +105,42 @@ const Home = () => {
             clickable: true,
           }}
         >
-          <div className="mt-[-600px] flex flex-wrap justify-around">
+          <div className="mt-[-700px] mb-[200px] flex flex-wrap justify-around m-[50px]">
             {data.map((elem) => {
               return (
                 <SwiperSlide className="card" key={elem.id}>
-                  <div key={elem.id} className="w-[300px] h-[350px] ">
-                    <div className="bg-[#F5F5F5] p-[20px]">
-                      <div className="flex gap-[20px]">
-                        <div className="w-[200px] h-[200px] ">
-                          <img
-                            className="w-[200px] h-[200px]"
-                            src={`${API}/images/${elem.image}`}
-                            alt=""
-                          />
-                        </div>
-                        <div className="w-[40px] h-[40px] mt-[-20px]">
-                          <div onClick={() => info(elem.id)}>
-                            <img src={img6} alt="" />
-                          </div>
-                          <img
-                            onClick={() => dispach(addToWishlist(elem))}
-                            src={img5}
-                            alt=""
-                          />
-                        </div>
+                  <div className="bg-white border rounded-xl shadow-md overflow-hidden transition-transform w-[25%] h-[350px] hover:scale-105 duration-300">
+                    <div className="bg-[#F5F5F5] p-4 relative">
+                      <img
+                        className="w-full h-[200px] object-contain"
+                        src={`${API}/images/${elem.image}`}
+                        alt=""
+                      />
+                      <div className="absolute top-4 right-4 space-y-2">
+                        <button onClick={() => info(elem.id)}>
+                          <img className="w-6 h-6" src={img6} alt="View" />
+                        </button>
+                        <button onClick={() => dispach(addToWishlist(elem))}>
+                          <img className="w-6 h-6" src={img5} alt="Wishlist" />
+                        </button>
                       </div>
                     </div>
-                    <button
-                      onClick={() => dispach(addToCart(elem.id))}
-                      className="addtocart"
-                    >
-                      Add To Cart
-                    </button>
-                    <div key={elem.id} className="">
-                      <h1>{elem.productName}</h1>
-                      <div className="flex justify-between items-center">
-                        <p>{elem.price}</p>
-                        <img src={img14} alt="" />
+                    <div className="p-4">
+                      <h2 className="text-lg font-semibold">
+                        {elem.productName}
+                      </h2>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-[#DB4444] font-bold text-md">
+                          ${elem.price}
+                        </p>
+                        <img className="w-32 h-6" src={img14} alt="Rating" />
                       </div>
+                      <button
+                        onClick={() => dispach(addToCart(elem.id))}
+                        className="addtocart"
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -156,7 +148,7 @@ const Home = () => {
             })}
           </div>
           <Link to="/product">
-            <div className="w-[20%] m-auto mb-[50px]">
+            <div className="w-[20%] m-auto mt-[50px] mb-[50px]">
               <button className="w-[200px] m-auto mb-[50px] h-[50px] rounded-xl bg-[#DB4444] text-white">
                 View All
               </button>
@@ -263,21 +255,30 @@ const Home = () => {
           cnt++;
           if (cnt <= 4) {
             return (
-              <div className="card" key={el.id}>
-                <div className="h-[400px]">
-                  <div key={el.id}>
-                    <div className="bg-[#F5F5F5] w-[250px] h-[240px] p-[20px] ">
-                      <div className="flex">
-                        <img
-                          className="w-[200px] h-[200px]"
-                          src={`${API}/images/${el.image}`}
-                          alt=""
-                        />
-                        <div className="w-[50px] h-[50px] mt-[-20px]">
-                          <img onClick={() => info(el.id)} src={img5} alt="" />
-                          <img src={img6} alt="" />
-                        </div>
-                      </div>
+              <div className="card">
+                <div className="bg-white border rounded-xl shadow-md overflow-hidden transition-transform w-[90%] h-[350px] hover:scale-105 duration-300">
+                  <div className="bg-[#F5F5F5] p-4 relative">
+                    <img
+                      className="w-full h-[200px] object-contain"
+                      src={`${API}/images/${el.image}`}
+                      alt=""
+                    />
+                    <div className="absolute top-4 right-4 space-y-2">
+                      <button onClick={() => info(el.id)}>
+                        <img className="w-6 h-6" src={img6} alt="View" />
+                      </button>
+                      <button onClick={() => dispach(addToWishlist(el))}>
+                        <img className="w-6 h-6" src={img5} alt="Wishlist" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold">{el.productName}</h2>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-[#DB4444] font-bold text-md">
+                        ${el.price}
+                      </p>
+                      <img className="w-32 h-6" src={img14} alt="Rating" />
                     </div>
                     <button
                       onClick={() => dispach(addToCart(el.id))}
@@ -285,11 +286,6 @@ const Home = () => {
                     >
                       Add To Cart
                     </button>
-                    <h1>{el.productName}</h1>
-                    <div className="flex justify-between items-center">
-                      <p>{el.price}</p>
-                      <img src={img14} alt="" />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -352,25 +348,32 @@ const Home = () => {
             res++;
             if (res <= 8) {
               return (
-                <div className="card" key={el.id}>
-                  <div className="h-[400px]">
-                    <div key={el.id}>
-                      <div className="bg-[#F5F5F5] w-[280px] h-[240px] p-[20px] ">
-                        <div className="flex">
-                          <img
-                            className="w-[200px] h-[200px]"
-                            src={`${API}/images/${el.image}`}
-                            alt=""
-                          />
-                          <div className="w-[50px] h-[50px] mt-[-20px]">
-                            <img
-                              onClick={() => info(el.id)}
-                              src={img5}
-                              alt=""
-                            />
-                            <img src={img6} alt="" />
-                          </div>
-                        </div>
+                <div className="card">
+                  <div className="bg-white border rounded-xl shadow-md overflow-hidden transition-transform w-[90%] h-[350px] hover:scale-105 duration-300">
+                    <div className="bg-[#F5F5F5] p-4 relative">
+                      <img
+                        className="w-full h-[200px] object-contain"
+                        src={`${API}/images/${el.image}`}
+                        alt=""
+                      />
+                      <div className="absolute top-4 right-4 space-y-2">
+                        <button onClick={() => info(el.id)}>
+                          <img className="w-6 h-6" src={img6} alt="View" />
+                        </button>
+                        <button onClick={() => dispach(addToWishlist(el))}>
+                          <img className="w-6 h-6" src={img5} alt="Wishlist" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h2 className="text-lg font-semibold">
+                        {el.productName}
+                      </h2>
+                      <div className="flex justify-between items-center mt-2">
+                        <p className="text-[#DB4444] font-bold text-md">
+                          ${el.price}
+                        </p>
+                        <img className="w-32 h-6" src={img14} alt="Rating" />
                       </div>
                       <button
                         onClick={() => dispach(addToCart(el.id))}
@@ -378,11 +381,6 @@ const Home = () => {
                       >
                         Add To Cart
                       </button>
-                      <h1>{el.productName}</h1>
-                      <div className="flex justify-between items-center">
-                        <p>{el.price}</p>
-                        <img src={img14} alt="" />
-                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-
 export const API = "https://store-api.softclub.tj";
 let token = localStorage.getItem("token");
 let wishlist = localStorage.getItem("wishlist");
+
 
 export const get = createAsyncThunk(
   "get/data",
@@ -144,7 +144,7 @@ export const decrement = createAsyncThunk(
 
 export const getById = createAsyncThunk(
   "counter/getById",
-  async ({ id, navigation }) => {
+  async ({ id, navigate }) => {
     try {
       let { data } = await axios.get(
         `${API}/Product/get-product-by-id?id=${id}`,
@@ -152,7 +152,7 @@ export const getById = createAsyncThunk(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      navigation(`/aboutProduct/${id}`);
+      navigate(`/aboutProduct/${id}`);
       return data.data;
     } catch (error) {
       console.error(error);
